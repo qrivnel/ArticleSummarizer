@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import {
   Box,
@@ -15,16 +15,15 @@ import {
 import ChatRow from "./components/chat-row";
 import axios from "axios";
 
-// Karanlık tema oluşturma
 const theme = createTheme({
   palette: {
-    mode: "dark", // Karanlık tema
+    mode: "dark",
     primary: {
       main: "#1976d2",
     },
     background: {
-      default: "#121212", // Koyu arka plan rengi
-      paper: "#1c1c1c", // Koyu kağıt arka plan rengi
+      default: "#121212",
+      paper: "#1c1c1c",
     },
   },
 });
@@ -34,6 +33,11 @@ function App() {
   const [selectedChat, setSelectedChat] = useState<any>();
   const [chats, setChats] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setChats([])
+  }, [])
+  
 
   const handleChange = (event: any) => {
     setMessage(event.target.value);
