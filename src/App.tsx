@@ -208,7 +208,6 @@ function App() {
             overflow: "scroll",
           }}
         >
-          asd
           {chats != undefined
             ? chats.map((chat: any, index: number) => (
                 <ChatRow key={index} chat={chat} selectChat={selectChat} />
