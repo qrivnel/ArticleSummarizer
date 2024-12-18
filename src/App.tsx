@@ -73,149 +73,148 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container
-        maxWidth="sm"
-        sx={{ paddingTop: 2, display: "flex", flexDirection: "column" }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "50vw",
-            height: "80vh",
-            backgroundColor: "background.default",
-            borderRadius: 1,
-            boxShadow: 3,
-          }}
+      <Box sx={{display: "flex", flexDirection: "row", width: "100vw", height: "100vh", alignItems: "center"}}>
+        <Container
+          maxWidth="sm"
+          sx={{ paddingTop: 2, display: "flex", flexDirection: "column", width: "50%", height: "100%" }}
         >
-          {/* Sohbet Başlığı */}
-          <Box
-            sx={{
-              padding: 2,
-              borderBottom: 1,
-              borderColor: "divider",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Typography variant="h5" color="white">
-              Makale Özetleyici
-            </Typography>
-          </Box>
-
-          {/* Sohbet Mesajları */}
-          {!selectedChat ? (
-            <List sx={{ overflowY: "auto", flexGrow: 1, padding: 2 }}>
-              <ListItem>
-                <Paper
-                  sx={{ padding: 1, backgroundColor: "#333", color: "white" }}
-                >
-                  Özetini çıkarmak istediğiniz makaleyi gönderebilirsiniz.
-                </Paper>
-              </ListItem>
-            </List>
-          ) : (
-            <List sx={{ overflowY: "auto", flexGrow: 1, padding: 2 }}>
-              <ListItem sx={{ justifyContent: "end" }}>
-                <Paper
-                  sx={{
-                    padding: 1,
-                    backgroundColor: "primary.main",
-                    color: "white",
-                    width: "70%",
-                  }}
-                >
-                  {selectedChat.article}
-                </Paper>
-              </ListItem>
-              <ListItem>
-                <Paper
-                  sx={{
-                    padding: 1,
-                    backgroundColor: "#333",
-                    color: "white",
-                    width: "70%",
-                  }}
-                >
-                  {loading ?  <CircularProgress /> : selectedChat.summary}
-                </Paper>
-              </ListItem>
-            </List>
-          )}
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
-              padding: 2,
-              borderTop: 1,
-              borderColor: "divider",
+              width: "100%",
+              height: "100%",
+              backgroundColor: "background.default",
+              borderRadius: 1,
+              boxShadow: 3,
             }}
           >
-            {!selectedChat?.summary ? (
-              <>
-                <TextField
-                  label="Mesajınızı yazın"
-                  variant="outlined"
-                  value={message}
-                  onChange={handleChange}
-                  multiline
-                  minRows={1}
-                  maxRows={5}
-                  fullWidth
-                  sx={{
-                    "& .MuiInputBase-root": {
-                      minHeight: "40px",
-                    },
-                  }}
-                />
+            <Box
+              sx={{
+                padding: 2,
+                borderBottom: 1,
+                borderColor: "divider",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Typography variant="h5" color="white">
+                Makale Özetleyici
+              </Typography>
+            </Box>
+  
+            {/* Sohbet Mesajları */}
+            {!selectedChat ? (
+              <List sx={{ overflowY: "auto", flexGrow: 1, padding: 2 }}>
+                <ListItem>
+                  <Paper
+                    sx={{ padding: 1, backgroundColor: "#333", color: "white" }}
+                  >
+                    Özetini çıkarmak istediğiniz makaleyi gönderebilirsiniz.
+                  </Paper>
+                </ListItem>
+              </List>
+            ) : (
+              <List sx={{ overflowY: "auto", flexGrow: 1, padding: 2 }}>
+                <ListItem sx={{ justifyContent: "end" }}>
+                  <Paper
+                    sx={{
+                      padding: 1,
+                      backgroundColor: "primary.main",
+                      color: "white",
+                      width: "70%",
+                    }}
+                  >
+                    {selectedChat.article}
+                  </Paper>
+                </ListItem>
+                <ListItem>
+                  <Paper
+                    sx={{
+                      padding: 1,
+                      backgroundColor: "#333",
+                      color: "white",
+                      width: "70%",
+                    }}
+                  >
+                    {loading ?  <CircularProgress /> : selectedChat.summary}
+                  </Paper>
+                </ListItem>
+              </List>
+            )}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                padding: 2,
+                borderTop: 1,
+                borderColor: "divider",
+              }}
+            >
+              {!selectedChat?.summary ? (
+                <>
+                  <TextField
+                    label="Mesajınızı yazın"
+                    variant="outlined"
+                    value={message}
+                    onChange={handleChange}
+                    multiline
+                    minRows={1}
+                    maxRows={5}
+                    fullWidth
+                    sx={{
+                      "& .MuiInputBase-root": {
+                        minHeight: "40px",
+                      },
+                    }}
+                  />
+                  <Button
+                    disabled={loading}
+                    variant="contained"
+                    color="primary"
+                    sx={{ marginTop: 2 }}
+                    onClick={sendMessage}
+                  >
+                    {loading ? "Gönderiliyor.." : "Gönder"}
+                  </Button>
+                </>
+              ) : (
                 <Button
-                  disabled={loading}
                   variant="contained"
                   color="primary"
                   sx={{ marginTop: 2 }}
-                  onClick={sendMessage}
+                  onClick={() => setSelectedChat(null)}
                 >
-                  {loading ? "Gönderiliyor.." : "Gönder"}
+                  Tamam
                 </Button>
-              </>
-            ) : (
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{ marginTop: 2 }}
-                onClick={() => setSelectedChat(null)}
-              >
-                Tamam
-              </Button>
-            )}
+              )}
+            </Box>
           </Box>
+          <Box mt={2} sx={{ textAlign: "center", p: 2 }}>
+            <Divider />
+            <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+              © 2024 Makale Özetleyici
+            </Typography>
+          </Box>
+        </Container>
+        <Box
+          sx={{
+            display: "flex",
+            width: "30%",
+            height: "70%",
+            paddingX: "16px",
+            backgroundColor: "background.default",
+            borderRadius: "8px",
+            overflow: "scroll",
+          }}
+        >
+          asd
+          {chats != undefined
+            ? chats.map((chat: any, index: number) => (
+                <ChatRow key={index} chat={chat} selectChat={selectChat} />
+              ))
+            : null}
         </Box>
-        <Box mt={2} sx={{ textAlign: "center", p: 2 }}>
-          <Divider />
-          <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
-            © 2024 Makale Özetleyici
-          </Typography>
-        </Box>
-      </Container>
-      <Box
-        sx={{
-          width: "30%",
-          height: "70%",
-          position: "absolute",
-          right: "100px",
-          top: "60px",
-          paddingX: "16px",
-          backgroundColor: "background.default",
-          borderRadius: "8px",
-          boxSizing: "border-box",
-          overflow: "scroll",
-        }}
-      >
-        {chats != undefined
-          ? chats.map((chat: any, index: number) => (
-              <ChatRow key={index} chat={chat} selectChat={selectChat} />
-            ))
-          : null}
       </Box>
     </ThemeProvider>
   );
