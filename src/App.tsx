@@ -231,6 +231,9 @@ function App() {
                 padding: 2,
               }}
             >
+              <Typography variant="h5" color="white">
+                  Geçmiş
+                </Typography>
               {chats != undefined
                 ? chats.map((chat: any, index: number) => (
                     <ChatRow key={index} chat={chat} selectChat={selectChat} />
