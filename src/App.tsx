@@ -83,7 +83,7 @@ function App() {
             summary: summary,
             article: message,
           })
-          .then((res: any) => {
+          .then((_res: any) => {
             getChats()
           });
       }
