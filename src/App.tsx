@@ -58,7 +58,7 @@ function App() {
 
   const getSummary = async () => {
     if (message)
-      return await axios.post("http://127.0.0.1:5000/summarize", {
+      return await axios.post("http://172.20.10.4:5005/summarize", {
         article: message.trim(),
       });
   };
