@@ -1,50 +1,26 @@
-# React + TypeScript + Vite
+<h1 align="center">Article Summarizer</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+**Article Summarizer** is an application that allows users to summarize Wikipedia articles. Users can paste an article link and get a summary by submitting it to a model. The app features a chat interface where users can interact with the model, and their previous conversations are displayed on the right side. The article and its summary are saved in the **Firebase** database.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Project Image](src/assets/ArticleSummarizer-1.png)
 
-## Expanding the ESLint configuration
+![Project Image](src/assets/ArticleSummarizer-2.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
+- **Article Summarization**: Users can paste Wikipedia articles and instantly get their summaries.
+- **Chat History**: A sidebar on the right shows the history of all the summarization requests and conversations.
+- **Firebase Integration**: Articles and their summaries are saved to the Firebase database.
+- **Trained Model**: Requests from users are sent to the custom model in the ArticleSummarizerBackend repository. This model has been trained with **4000 data entries**.
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies Used
+- **Frontend**: React (or React Native)
+- **Backend**: Custom-trained model (ArticleSummarizerBackend repository)
+- **Database**: Firebase
+- **Model**: Trained article summarization model (trained with 4000 data entries)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Setup and Usage
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/qrivnel/ArticleSummarizer.git
