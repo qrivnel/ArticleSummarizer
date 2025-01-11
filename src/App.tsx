@@ -58,7 +58,7 @@ function App() {
 
   const getSummary = async () => {
     if (message)
-      return await axios.post("http://172.20.10.4:5005/summarize", {
+      return await axios.post(import.meta.env.VITE_BASE_URL+"/summarize", {
         article: message.trim(),
       });
   };
